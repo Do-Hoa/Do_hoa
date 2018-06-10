@@ -103,12 +103,20 @@ void display(void)
 	glLoadIdentity();
 	gluLookAt(5.0,5.0,15.0,0.0,0.0,0.0,0.0,1.0,0.0);
 	
+	glDisable(GL_LIGHTING);
 	glPushMatrix();
-	SetMaterialColor(K_MAT_YELLOW);
-	
+	glColor3f(1.0, 1.0, 0.0);
 	glCallList(hinh_sun);
-	glPopMatrix();
+	glPopMatrix();	
+	glEnable(GL_LIGHTING);
 	
+	GLfloat light_position[] = { 0.0, 0.0, 0.0,1 };
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	GLfloat light_diff[] = { 1.0, 1.0, 1.0, 1.0 };
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);
+	GLfloat light_amb[] = { 0.0, 0.0, 0.0, 1.0 };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);
+		
 	glPushMatrix();
 	glRotatef(year, 0.0, 1.0, 0.0);
 	SetMaterialColor(K_MAT_BLUE);
@@ -168,6 +176,11 @@ void init()
 	glEnable (GL_LIGHTING);
 	glEnable (GL_LIGHT0);
 	
+	
+	
+
+	
+	/*
 	GLfloat light[] = {1.0, 1.0, 1.0, 0.0};
 	glLightfv(GL_LIGHT0, GL_POSITION, light);
 	GLfloat ambient [] = {1.0, 0.0, 0.0, 1.0};
@@ -181,7 +194,7 @@ void init()
 	
 	GLfloat shininess = 50.0f;
 	glMateriali(GL_FRONT, GL_SHININESS, shininess);
-	
+	*/
 	hinh_sun = Cau(2.0);
 	hinh_ea = Cau(1.0);
 	hinh_moon = Cau(0.2);
