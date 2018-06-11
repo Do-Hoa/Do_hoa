@@ -1,0 +1,4 @@
+Play/Pause :space bar
+Zoom in/zoom out: mouse wheel
+Rotate: a,s,d,w
+quit: q
